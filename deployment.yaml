@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: course-service                    # Name of the deployment
+  namespace: workshop               # The namespace name
+  annotations:
+    description: "Deployment for the course service"  # Add any comments or description here
+spec:
+  selector:
+    matchLabels:
+      app: course-service                 # Label used to select pods belonging to this deployment
+  replicas: 2                            # Number of desired replicas for the deployment
+  template:
+    metadata:
+      labels:
+        app: course-service               # Labels applied to the pods belonging to this deployment
+    spec:
+      containers:
+        - name: course-service            # Name of the container
+          image: mohammedaljader2000/course-service:latest  # Docker image for the container
+          imagePullPolicy: Always         # Always pull the latest version of the image
+          ports:
+            - containerPort: 8081        # Port on which the container listens
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: kube                 # Environment variable for the container
+      restartPolicy: Always               # Restart the container if it fails
