@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: course-service              # Name of the service
+spec:
+  selector:
+    app: course-service             # Select pods with the label "app: course-service"
+  ports:
+    - protocol: "TCP"
+      port: 80                      # Port exposed by the service
+      targetPort: 8081              # Port on the pods to forward traffic to
+  type: NodePort                    # Expose the service on a randomly assigned port on each node
