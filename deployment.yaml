@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: course-service                    # Name of the deployment
-  namespace: workshop               # The namespace name
   annotations:
     description: "Deployment for the course service"  # Add any comments or description here
 spec:
@@ -23,5 +22,5 @@ spec:
             - containerPort: 8081        # Port on which the container listens
           env:
             - name: SPRING_PROFILES_ACTIVE
-              value: kube                 # Environment variable for the container
+              value: test                 # Environment variable for the container
       restartPolicy: Always               # Restart the container if it fails
